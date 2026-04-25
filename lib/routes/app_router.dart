@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learning_flutter_1/presentation/screens/home/homepage.dart';
-import 'package:learning_flutter_1/presentation/screens/login/loginpage.dart';
+import 'package:learning_flutter_1/presentation/screens/home/home_screen.dart';
+import 'package:learning_flutter_1/presentation/screens/login/login_screen.dart';
 import 'package:learning_flutter_1/routes/app_routes.dart';
 
 class AppRouter {
@@ -13,9 +13,8 @@ class AppRouter {
       case AppRoutes.login:
         return MaterialPageRoute(builder: (_) => Loginpage());
       // case AppRoutes.profile:
-      //   return MaterialPageRoute(builder: (_) => ProfilePage());
-      // case AppRoutes.settings:
-      //   return MaterialPageRoute(builder: (_) => SettingsPage());
+      //   // return MaterialPageRoute(builder: (_) => ProfilePage());
+      //   break;
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

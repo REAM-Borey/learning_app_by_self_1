@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_flutter_1/presentation/bloc/counter_bloc.dart';
-import 'package:learning_flutter_1/presentation/bloc/counter_event.dart';
 import 'package:learning_flutter_1/presentation/bloc/counter_state.dart';
-import 'package:learning_flutter_1/presentation/screens/home/secondpage.dart';
+import 'package:learning_flutter_1/presentation/screens/home/second_screen.dart';
+import 'package:learning_flutter_1/presentation/screens/login/login_screen.dart';
 import 'package:learning_flutter_1/services/product_service.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -53,15 +53,20 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: const Text('Go to Second Page'),
             ),
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Loginpage()),
+                );
+              },
+              child: Text('TextButton'),
+            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.read<CounterBloc>().add(IncrementCounterEvent());
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }

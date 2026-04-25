@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learning_flutter_1/presentation/screens/home/homepage.dart';
-import 'package:learning_flutter_1/presentation/screens/login/loginpage.dart';
+import 'package:learning_flutter_1/presentation/screens/home/home_screen.dart';
+import 'package:learning_flutter_1/presentation/screens/login/login_screen.dart';
 import 'package:learning_flutter_1/routes/app_routes.dart';
 
 class AppPages {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning_flutter_1/presentation/screens/home/homepage.dart';
-import 'package:learning_flutter_1/presentation/screens/login/loginpage.dart';
+import 'package:learning_flutter_1/presentation/screens/home/home_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
