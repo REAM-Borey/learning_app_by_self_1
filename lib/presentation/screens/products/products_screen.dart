@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:learning_flutter_1/data/models/backend/api/api_product.dart';
-import 'package:learning_flutter_1/presentation/screens/products/product_detail_screen.dart';
 import 'package:learning_flutter_1/services/product_service.dart';
 
 class ProductsScreen extends StatefulWidget {
@@ -14,9 +14,15 @@ class _ProductsScreenState extends State<ProductsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ✅ fix 1: Scaffold, not SingleChildScrollView
       appBar: AppBar(
-        // ✅ fix 2: AppBar belongs here
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            context.pop();
+          },
+        ),
+
+        backgroundColor: Colors.white,
         title: const Text('Products'),
         centerTitle: true,
         actions: const [Icon(Icons.shopping_bag_outlined), SizedBox(width: 18)],
@@ -32,7 +38,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
           if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           }
-          // Empty                                           // ✅ fix 3: all inside builder
+          // Empty
           final products = snapshot.data ?? [];
           if (products.isEmpty) {
             return const Center(child: Text('No products found.'));
@@ -65,14 +71,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => ProductDetailScreen(product: product),
-          ),
-        );
-      },
+      onTap: () => context.go('detail', extra: product),
       child: Card(
         elevation: 3,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -101,17 +100,17 @@ class ProductCard extends StatelessWidget {
 
             // Details
             Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.symmetric(horizontal: 1.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     product.title,
                     maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                    overflow: TextOverflow.clip,
                     style: const TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -120,7 +119,7 @@ class ProductCard extends StatelessWidget {
                         .toString()
                         .split('.')
                         .last
-                        .replaceAll('_', ' '),
+                        .replaceAll('_', ''),
                     style: TextStyle(
                       fontSize: 10,
                       color: Colors.grey[500],
@@ -141,11 +140,11 @@ class ProductCard extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          const Icon(Icons.star, size: 12, color: Colors.amber),
+                          const Icon(Icons.star, size: 18, color: Colors.amber),
                           const SizedBox(width: 2),
                           Text(
                             '${product.rating.rate}',
-                            style: const TextStyle(fontSize: 11),
+                            style: const TextStyle(fontSize: 12),
                           ),
                         ],
                       ),

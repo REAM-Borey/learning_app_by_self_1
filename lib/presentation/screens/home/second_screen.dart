@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_flutter_1/presentation/bloc/counter_bloc.dart';
 import 'package:learning_flutter_1/presentation/bloc/counter_state.dart';
 
-class Secondpage extends StatelessWidget {
-  const Secondpage({super.key});
+class SecondScreen extends StatelessWidget {
+  const SecondScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

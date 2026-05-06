@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:learning_flutter_1/presentation/bloc/counter_bloc.dart';
 import 'package:learning_flutter_1/presentation/bloc/counter_state.dart';
-import 'package:learning_flutter_1/presentation/screens/home/second_screen.dart';
-import 'package:learning_flutter_1/presentation/screens/login/login_screen.dart';
-import 'package:learning_flutter_1/presentation/screens/products/products_screen.dart';
 import 'package:learning_flutter_1/services/product_service.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class MyHomeScreen extends StatefulWidget {
+  const MyHomeScreen({super.key, required this.title});
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomeScreen> createState() => _MyHomeScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomeScreenState extends State<MyHomeScreen> {
   final _productService = ProductService();
 
   @override
@@ -32,7 +30,37 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      backgroundColor: Colors.white,
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.deepPurple),
+              child: Text(
+                'Menu',
+                style: TextStyle(color: Colors.white, fontSize: 24),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () => context.push('/home'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.shopping_bag_outlined),
+              title: const Text('Products'),
+              onTap: () => context.push('/products'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.login),
+              title: const Text('Login'),
+              onTap: () => context.push('/login'),
+            ),
+          ],
+        ),
+      ),
+      appBar: AppBar(title: Text(widget.title), centerTitle: true),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -46,34 +74,20 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Secondpage()),
-                );
-              },
+              onPressed: () => context.push('/second'),
               child: const Text('Go to Second Page'),
             ),
-            TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Loginpage()),
-                );
-              },
-              child: Text('TextButton'),
+            ElevatedButton(
+              onPressed: () => context.push('/login'),
+              child: Text('login screen'),
             ),
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProductsScreen()),
-                );
-              },
+              onPressed: () => context.push('/products'),
               child: Text('Products'),
+            ),
+            ElevatedButton(
+              onPressed: () => context.push('/orders'),
+              child: const Text('Open second screen'),
             ),
           ],
         ),
