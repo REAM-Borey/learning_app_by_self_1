@@ -3,9 +3,11 @@
 //     final welcome = welcomeFromJson(jsonString);
 import 'dart:convert';
 
+// ignore: non_constant_identifier_names
 List<Product> ProductFromJson(String str) =>
     List<Product>.from(json.decode(str).map((x) => Product.fromJson(x)));
 
+// ignore: non_constant_identifier_names
 String ProductToJson(List<Product> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
@@ -49,6 +51,7 @@ class Product {
   };
 }
 
+// ignore: constant_identifier_names
 enum Category { ELECTRONICS, JEWELERY, MEN_S_CLOTHING, WOMEN_S_CLOTHING }
 
 final categoryValues = EnumValues({

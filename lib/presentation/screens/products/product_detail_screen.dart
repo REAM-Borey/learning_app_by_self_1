@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:learning_flutter_1/data/models/backend/api/api_product.dart';
 
 class ProductDetailScreen extends StatelessWidget {
